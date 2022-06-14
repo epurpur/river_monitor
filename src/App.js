@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 /* CSS Styles */
 import './App.css';
@@ -6,7 +6,25 @@ import './App.css';
 /* Components */
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
+async function usgsWaterData() {
+      try{
+        let response = await fetch('http://waterservices.usgs.gov/nwis/iv/?format=json&sites=02032515&parameterCd=00060,00065&siteStatus=all')
+        console.log(response)
+        
+      } catch (err) {
+        console.log('error in API call!')
+        console.log(err);
+      }
+    }
+
+
 function App() {
+
+  useEffect(() => {
+    usgsWaterData()
+  }, [])
+
+  
 
   const [riverData, setRiverData] = useState([
     {
