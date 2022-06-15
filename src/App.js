@@ -16,6 +16,7 @@ async function usgsWaterData() {
         // to get current streamflow data for specific site by site ID
         // for example, Moorman's River site id: 02032250
         console.log('Current Streamflow: ', data.value.timeSeries[0].values[0].value[0].value)
+        console.log('Current River Level: ', data.value.timeSeries[1].values[0].value[0].value)
         
 
         
