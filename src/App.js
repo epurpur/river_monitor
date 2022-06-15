@@ -8,8 +8,17 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 async function usgsWaterData() {
       try{
-        let response = await fetch('http://waterservices.usgs.gov/nwis/iv/?format=json&sites=02032515&parameterCd=00060,00065&siteStatus=all')
-        console.log(response)
+        let response = await fetch('https://waterservices.usgs.gov/nwis/iv/?format=json&sites=02032250&parameterCd=00060,00065&siteStatus=all')
+
+        // let response = await fetch('https://api.agify.io?name=bella')
+        let data = await response.json()
+        console.log(data.value)
+        // to get current streamflow data for specific site by site ID
+        // for example, Moorman's River site id: 02032250
+        console.log('Current Streamflow: ', data.value.timeSeries[0].values[0].value[0].value)
+        
+
+        
         
       } catch (err) {
         console.log('error in API call!')
