@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 /* CSS Styles */
 import './App.css';
@@ -8,7 +7,7 @@ import './App.css';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 
-function App() {
+const App = () => {
 
 
   // Manually set data for all rivers (database not needed)
@@ -144,36 +143,26 @@ function App() {
   /////////////////////////////////////////////
   // Getting water levels data from USGS API //
   /////////////////////////////////////////////
-  //console.log('before', testData)
 
-  //setTestData('new test data')
+  const [riverLevel, setRiverLevel] = useState()
 
-  //console.log('after', testData)
-  
+  useEffect(() => {
+    const usgsCurrentWaterData = async () => {
+      try{
+        let response = await fetch('https://waterservices.usgs.gov/nwis/iv/?format=json&sites=02032250&parameterCd=00060,00065&siteStatus=all')
 
-
-  // useEffect(() => {
-  //   const usgsCurrentWaterData = async () => {
-  //     try{
-  //       let response = await fetch('https://waterservices.usgs.gov/nwis/iv/?format=json&sites=02032250&parameterCd=00060,00065&siteStatus=all')
-
-  //       // let response = await fetch('https://api.agify.io?name=bella')
-  //       let data = await response.json()
-  //       console.log(data.value)
-  //       // to get current streamflow data for specific site by site ID
-  //       // for example, Moorman's River site id: 02032250
-  //       //console.log('Current Streamflow: ', data.value.timeSeries[0].values[0].value[0].value)
-  //       //console.log('Current River Level: ', data.value.timeSeries[1].values[0].value[0].value)
+        let data = await response.json()
+        // to get current streamflow data for specific site by site ID
         
+        setRiverLevel(data.value.timeSeries[1].values[0].value[0].value)
 
-
-  //     } catch (err) {
-  //       console.log('error in API call!')
-  //       console.log(err);
-  //     }
-  //   }
-  //   //usgsCurrentWaterData()
-  // }, [])
+      } catch (err) {
+        console.log('error in API call!')
+        console.log(err);
+      }
+    }
+    usgsCurrentWaterData()
+  }, [])
 
   
 
@@ -192,6 +181,7 @@ function App() {
                 <h2>{river.name}</h2>
                 <h4>{river.area}</h4>
                 <a href={river.link} target="_blank" rel="noreferrer">See USGS Site</a>
+                <h5>River Level: {riverLevel && riverLevel}</h5>
               </Popup>
             </Marker>
           )}
