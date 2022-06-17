@@ -19,7 +19,9 @@ const App = () => {
       area: "Sugar Hollow",
       latitude: 38.137866,
       longitude: -78.551420,
-      link: 'https://waterdata.usgs.gov/nwis/uv?02032250'
+      link: 'https://waterdata.usgs.gov/nwis/uv?02032250',
+      streamflow: null,
+      riverLevel: null
     },
     {
       id: 2,
@@ -28,7 +30,9 @@ const App = () => {
       area: "Schuyler",
       latitude: 37.818201,
       longitude: -78.771352,
-      link: `https://waterdata.usgs.gov/nwis/uv?02028500`
+      link: `https://waterdata.usgs.gov/nwis/uv?02028500`,
+      streamflow: null,
+      riverLevel: null
     },
     {
       id: 3,
@@ -36,7 +40,9 @@ const App = () => {
       name: "Rivanna River",
       latitude: 38.024981,
       longitude: -78.452893,
-      link: 'https://waterdata.usgs.gov/nwis/uv?02034000'
+      link: 'https://waterdata.usgs.gov/nwis/uv?02034000',
+      streamflow: null,
+      riverLevel: null
     },
     {
       id: 4,
@@ -45,7 +51,9 @@ const App = () => {
       area: "Blue Ridge Railway Trail",
       latitude: 37.702826,
       longitude: -79.025056,
-      link: 'https://waterdata.usgs.gov/nwis/uv?02027500'
+      link: 'https://waterdata.usgs.gov/nwis/uv?02027500',
+      streamflow: null,
+      riverLevel: null
     },
     {
       id: 5,
@@ -54,7 +62,9 @@ const App = () => {
       area: "Love Nest",
       latitude: 37.748388,
       longitude: -78.981485,
-      link: 'https://waterdata.usgs.gov/nwis/uv?02027000'
+      link: 'https://waterdata.usgs.gov/nwis/uv?02027000',
+      streamflow: null,
+      riverLevel: null
     },
     {
       id: 6,
@@ -63,7 +73,9 @@ const App = () => {
       area: "Holcomb Rock",
       latitude: 37.510061,
       longitude: -79.263919,
-      link: 'https://waterdata.usgs.gov/nwis/uv?02025500'
+      link: 'https://waterdata.usgs.gov/nwis/uv?02025500',
+      streamflow: null,
+      riverLevel: null
     },
     {
       id: 7,
@@ -72,7 +84,9 @@ const App = () => {
       area: "New River Gorge",
       latitude: 38.063733,
       longitude: -81.076491,
-      link: 'https://waterdata.usgs.gov/nwis/uv?03185400'
+      link: 'https://waterdata.usgs.gov/nwis/uv?03185400',
+      streamflow: null,
+      riverLevel: null
     },
     {
       id: 8,
@@ -81,7 +95,9 @@ const App = () => {
       area: "Meadow River",
       latitude: 38.115119,
       longitude: -80.879187,
-      link: 'https://waterdata.usgs.gov/nwis/uv?03190000'
+      link: 'https://waterdata.usgs.gov/nwis/uv?03190000',
+      streamflow: null,
+      riverLevel: null
     },
     {
       id: 9,
@@ -90,7 +106,9 @@ const App = () => {
       area: "Summersville Lake",
       latitude: 38.324855,
       longitude: -80.618284,
-      link: 'https://waterdata.usgs.gov/nwis/uv?03189000'
+      link: 'https://waterdata.usgs.gov/nwis/uv?03189000',
+      streamflow: null,
+      riverLevel: null
     },
     {
       id: 10,
@@ -99,7 +117,9 @@ const App = () => {
       area: "Franklin, River's Bend",
       latitude: 38.670059,
       longitude: -79.319928,
-      link: 'https://waterdata.usgs.gov/nwis/uv?01605500'
+      link: 'https://waterdata.usgs.gov/nwis/uv?01605500',
+      streamflow: null,
+      riverLevel: null
     },
     {
       id: 11,
@@ -108,7 +128,9 @@ const App = () => {
       area: "Old House, Blue Rock",
       latitude: 38.925356,
       longitude: -79.226880,
-      link: 'https://waterdata.usgs.gov/nwis/uv?01606500'
+      link: 'https://waterdata.usgs.gov/nwis/uv?01606500',
+      streamflow: null,
+      riverLevel: null
     },
     {
       id: 12,
@@ -116,7 +138,9 @@ const App = () => {
       name: "Rapidan River",
       latitude: 38.239894,
       longitude: -78.355899,
-      link: 'https://waterdata.usgs.gov/nwis/uv?01665500'
+      link: 'https://waterdata.usgs.gov/nwis/uv?01665500',
+      streamflow: null,
+      riverLevel: null
     },
     {
       id: 13, 
@@ -125,7 +149,9 @@ const App = () => {
       area: "Watauga River Gorge",
       latitude: 36.255811,
       longitude: -81.831477,
-      link: 'https://waterdata.usgs.gov/nwis/uv?03479000'
+      link: 'https://waterdata.usgs.gov/nwis/uv?03479000',
+      streamflow: null,
+      riverLevel: null
     },
     {
       id: 14,
@@ -134,7 +160,9 @@ const App = () => {
       area: "Linville Gorge",
       latitude: 35.857875,
       longitude: -81.900285,
-      link: 'https://waterdata.usgs.gov/nwis/uv?02138500'
+      link: 'https://waterdata.usgs.gov/nwis/uv?02138500',
+      streamflow: null,
+      riverLevel: null
     }
   ])
 
@@ -144,7 +172,17 @@ const App = () => {
   // Getting water levels data from USGS API //
   /////////////////////////////////////////////
 
-  const [riverLevel, setRiverLevel] = useState()
+  // useEffect(() => {
+    
+
+  //   setRiverData(riverData.map((river) => {
+  //     if (river.siteID === '02032250') {
+  //       river.riverLevel = 'MUCHO WATER'
+  //     }
+  //     return river
+  //   }));
+
+  // }, []);
 
   useEffect(() => {
     const usgsCurrentWaterData = async () => {
@@ -154,7 +192,15 @@ const App = () => {
         let data = await response.json()
         // to get current streamflow data for specific site by site ID
         
-        setRiverLevel(data.value.timeSeries[1].values[0].value[0].value)
+        // setRiverLevel(data.value.timeSeries[1].values[0].value[0].value)
+        //START HERE!!!
+        
+        setRiverData(riverData.map((river) => {
+          if (river.siteID === '02032250') {
+            river.riverLevel = data.value.timeSeries[1].values[0].value[0].value
+          }
+          return river
+          }));
 
       } catch (err) {
         console.log('error in API call!')
@@ -162,7 +208,9 @@ const App = () => {
       }
     }
     usgsCurrentWaterData()
-  }, [])
+
+    
+  }, []);
 
   
 
@@ -181,7 +229,7 @@ const App = () => {
                 <h2>{river.name}</h2>
                 <h4>{river.area}</h4>
                 <a href={river.link} target="_blank" rel="noreferrer">See USGS Site</a>
-                <h5>River Level: {riverLevel && riverLevel}</h5>
+                <h5>Current River Level: {river.riverLevel} ft</h5>
               </Popup>
             </Marker>
           )}
