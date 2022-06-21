@@ -172,22 +172,11 @@ const App = () => {
   // Getting water levels data from USGS API //
   /////////////////////////////////////////////
 
-  // useEffect(() => {
-    
-
-  //   setRiverData(riverData.map((river) => {
-  //     if (river.siteID === '02032250') {
-  //       river.riverLevel = 'MUCHO WATER'
-  //     }
-  //     return river
-  //   }));
-
-  // }, []);
-
   useEffect(() => {
     const usgsCurrentWaterData = async () => {
       try{
-        let response = await fetch('https://waterservices.usgs.gov/nwis/iv/?format=json&sites=02032250,02138500&parameterCd=00060,00065&siteStatus=all')
+        // API call includes river ID for each river, to add more rivers just include id number in 'sites'
+        let response = await fetch('https://waterservices.usgs.gov/nwis/iv/?format=json&sites=02032250,02028500,02034000,02027500,02027000,02025500,03185400,03190000,03189000,01605500,01606500,01665500,03479000,02138500&parameterCd=00060,00065&siteStatus=all')
 
         let data = await response.json()
         // extract timeSeries data from API results
@@ -201,62 +190,39 @@ const App = () => {
         for (let i = 0; i< data.length; i++) {
           //if i is 0 or is even number
           if (i === 0 || i%2 === 0) {    //modulo is for remainder
-
             streamflowArray.push(data[i])
-
-            // must slice string to get id of river from API data
-            // let riverID = data[i].name.slice(5, 13) // id: '02032250' (string)
-            
-            // get current streamflow for specific site by site ID
-            // let riverStreamflow = data[i].values[0].value[0].value
-            // console.log('Streamflow', riverStreamflow)
-
-            // setRiverData(riverData.map((river) => {
-            //   if (river.siteID === riverID) {
-            //     river.riverLevel = riverStreamflow
-            //   }
-            //   return river
-            //   }));
-
-            
           } else {
             riverHeightArray.push(data[i])
           }
         }
 
-        // parse streamflow Array to set streamflow levels of rivers
+        // parse streamflow Array to set streamflow levels
         for (let i of streamflowArray) {
             // must slice string to get id of river from API data
             let riverID = i.name.slice(5, 13) // id: '02032250' (string)
-            // console.log('item', i)
+
+            // set streamflow in riverData state
             setRiverData(riverData.map((river) => {
               if (river.siteID === riverID) {
-                river.riverLevel = i.values[0].value[0].value
+                river.streamflow = i.values[0].value[0].value
               }
               return river
             }))
-
-            // riverData.map((river) => {
-            //   if (river.siteID === riverID) {
-            //     console.log(`${river.siteID} matches ${riverID}`)
-            //   }
-            // })
-
         }
 
-        console.log('river height array', riverHeightArray)
+        // parse riverHeight Array to set river height levels
+        for (let i of riverHeightArray) {
+          // must slice string to get id of river from API data
+          let riverID = i.name.slice(5, 13) // id: '02032250' (string)
 
-        // to get current streamflow data for specific site by site ID
-        
-        // setRiverLevel(data.value.timeSeries[1].values[0].value[0].value)
-        //START HERE!!!
-        
-        // setRiverData(riverData.map((river) => {
-        //   if (river.siteID === '02032250') {
-        //     river.riverLevel = data.value.timeSeries[1].values[0].value[0].value
-        //   }
-        //   return river
-        //   }));
+          // set river height in riverData state
+          setRiverData(riverData.map((river) => {
+            if (river.siteID === riverID) {
+              river.riverLevel = i.values[0].value[0].value
+            }
+            return river
+          }))
+        }
 
       } catch (err) {
         console.log('error in API call!')
@@ -264,13 +230,7 @@ const App = () => {
       }
     }
     usgsCurrentWaterData()
-
-    
   }, []);
-
-  
-
-
 
 
   return (
@@ -282,11 +242,11 @@ const App = () => {
             // create marker w/ popup for each river in map
             <Marker position={[river.latitude, river.longitude]}>
               <Popup>
-                <h2>{river.name}</h2>
-                <h4>{river.area}</h4>
+                <h1>{river.name}</h1>
+                <h3>{river.area}</h3>
+                <h4>Current Streamflow Rate: {river.streamflow} m^3/s</h4>
+                <h4>Current River Level: {river.riverLevel} ft</h4>
                 <a href={river.link} target="_blank" rel="noreferrer">See USGS Site</a>
-                <h5>Current Streamflow Rate: {river.streamflow} </h5>
-                <h5>Current River Level: {river.riverLevel} ft</h5>
               </Popup>
             </Marker>
           )}
