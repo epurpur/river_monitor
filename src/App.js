@@ -173,25 +173,32 @@ const App = () => {
   //////////////////////////////////////////////
   // Setting location and zoom levels for map //
   //////////////////////////////////////////////
+  const [mapID, setMapID] = useState(1)  //mapID needed to re-render MapContainer component
   const [mapLocation, setMapLocation] = useState([36.95, -79.98]);
   const [mapZoom, setMapZoom] = useState(7.25);
 
   const handleMapZoom = (event) => {
-    //START HERE!!!!//
     const currentState = event.currentTarget.textContent
 
     // set map location and zoom level for each state
     if (currentState === 'VA') {
       setMapLocation([37.95, -78.5]);
       setMapZoom(9.25)
+      setMapID(2)
 
     } else if (currentState === 'WV') {
       setMapLocation([38.58, -80.35]);
       setMapZoom(8.5)
+      setMapID(3)
 
     } else if (currentState === 'NC') {
       setMapLocation([36, -81.9]);
       setMapZoom(9.25)
+      setMapID(4)
+    } else {
+      setMapLocation([36.95, -79.98])
+      setMapZoom(7.25)
+      setMapID(1)
     }
   };
 
@@ -269,9 +276,10 @@ const App = () => {
         <Button onClick={handleMapZoom}>VA</Button>
         <Button onClick={handleMapZoom}>WV</Button>
         <Button onClick={handleMapZoom}>NC</Button>
+        <Button onClick={handleMapZoom}>Full Extent</Button>
       </div>
       
-      <MapContainer center={mapLocation} zoom={mapZoom} scrollWheelZoom={false}>
+      <MapContainer key={mapID} center={mapLocation && mapLocation} zoom={mapZoom && mapZoom} scrollWheelZoom={false}>
         <TileLayer url="https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"/>
           {riverData && riverData.map((river) =>
             // create marker w/ popup for each river in map
