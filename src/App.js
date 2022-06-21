@@ -4,13 +4,16 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 /* Components */
+import { Button } from 'react-bootstrap'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 
 const App = () => {
 
+  ////////////////////////////////////////////////////////////
+  // Manually set data for all rivers (database not needed) //
+  ////////////////////////////////////////////////////////////
 
-  // Manually set data for all rivers (database not needed)
   const [riverData, setRiverData] = useState([
     {
       id: 1,
@@ -165,6 +168,12 @@ const App = () => {
       riverLevel: null
     }
   ])
+  
+  //////////////////////////////////////////////
+  // Setting location and zoom levels for map //
+  //////////////////////////////////////////////
+  const [mapLocation, setMapLocation] = useState([36.95, -79.98])
+  const [mapZoom, setMapZoom] = useState(7.25)
 
 
 
@@ -235,8 +244,15 @@ const App = () => {
 
   return (
     <main>
-
-      <MapContainer center={[36.95, -79.98]} zoom={7.25} scrollWheelZoom={false}>
+      <h1 id='titleText'> Climbing River Monitor </h1>
+      <div id='zoomLabel'>Click state to zoom</div>
+      <div id='buttonHolder'>
+        <Button>VA</Button>
+        <Button>WV</Button>
+        <Button>NC</Button>
+      </div>
+      
+      <MapContainer center={mapLocation} zoom={mapZoom} scrollWheelZoom={false}>
         <TileLayer url="https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"/>
           {riverData && riverData.map((river) =>
             // create marker w/ popup for each river in map

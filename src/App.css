@@ -2,8 +2,33 @@ main{
   background-color:gainsboro;
 }
 
+#titleText {
+  text-align: center;
+  font-size: 45px;
+  margin: 0;
+}
+
+#zoomLabel {
+  text-align: center;
+  font-size: 25px;
+}
+
+#buttonHolder {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 1px;
+}
+
+Button {
+  width: 33%;
+  margin: 5px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
 .leaflet-container{
-  margin: 10px;
+  margin: 5px 10px 5px 10px;
   padding: 10px;
   height: 600px;
   border: 1px solid black;
