@@ -6,6 +6,7 @@ import './App.css';
 /* Components */
 import { Button } from 'react-bootstrap'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { map } from 'leaflet';
 
 
 const App = () => {
@@ -172,9 +173,27 @@ const App = () => {
   //////////////////////////////////////////////
   // Setting location and zoom levels for map //
   //////////////////////////////////////////////
-  const [mapLocation, setMapLocation] = useState([36.95, -79.98])
-  const [mapZoom, setMapZoom] = useState(7.25)
+  const [mapLocation, setMapLocation] = useState([36.95, -79.98]);
+  const [mapZoom, setMapZoom] = useState(7.25);
 
+  const handleMapZoom = (event) => {
+    //START HERE!!!!//
+    const currentState = event.currentTarget.textContent
+
+    // set map location and zoom level for each state
+    if (currentState === 'VA') {
+      setMapLocation([37.95, -78.5]);
+      setMapZoom(9.25)
+
+    } else if (currentState === 'WV') {
+      setMapLocation([38.58, -80.35]);
+      setMapZoom(8.5)
+
+    } else if (currentState === 'NC') {
+      setMapLocation([36, -81.9]);
+      setMapZoom(9.25)
+    }
+  };
 
 
   /////////////////////////////////////////////
@@ -238,7 +257,7 @@ const App = () => {
         console.log(err);
       }
     }
-    usgsCurrentWaterData()
+    // usgsCurrentWaterData()
   }, []);
 
 
@@ -247,9 +266,9 @@ const App = () => {
       <h1 id='titleText'> Climbing River Monitor </h1>
       <div id='zoomLabel'>Click state to zoom</div>
       <div id='buttonHolder'>
-        <Button>VA</Button>
-        <Button>WV</Button>
-        <Button>NC</Button>
+        <Button onClick={handleMapZoom}>VA</Button>
+        <Button onClick={handleMapZoom}>WV</Button>
+        <Button onClick={handleMapZoom}>NC</Button>
       </div>
       
       <MapContainer center={mapLocation} zoom={mapZoom} scrollWheelZoom={false}>
