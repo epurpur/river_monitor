@@ -187,8 +187,8 @@ const App = () => {
       setMapID(2)
 
     } else if (currentState === 'WV') {
-      setMapLocation([38.58, -80.35]);
-      setMapZoom(8.5)
+      setMapLocation([38.58, -80.2]);
+      setMapZoom(8)
       setMapID(3)
 
     } else if (currentState === 'NC') {
