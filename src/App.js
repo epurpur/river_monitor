@@ -264,7 +264,7 @@ const App = () => {
         console.log(err);
       }
     }
-    // usgsCurrentWaterData()
+    usgsCurrentWaterData()
   }, []);
 
 
@@ -285,11 +285,11 @@ const App = () => {
             // create marker w/ popup for each river in map
             <Marker position={[river.latitude, river.longitude]}>
               <Popup>
-                <h1>{river.name}</h1>
+                <h1 id='riverName'>{river.name}</h1>
                 <h3>{river.area}</h3>
                 <h4>Current Streamflow Rate: {river.streamflow} m^3/s</h4>
                 <h4>Current River Level: {river.riverLevel} ft</h4>
-                <a href={river.link} target="_blank" rel="noreferrer">See USGS Site</a>
+                <a href={river.link} target="_blank" rel="noreferrer">See USGS Site for more info</a>
               </Popup>
             </Marker>
           )}

@@ -1,5 +1,5 @@
 main{
-  background-color:gainsboro;
+  background-color:rgb(235, 238, 255);
 }
 
 #titleText {
@@ -25,12 +25,23 @@ Button {
   margin: 5px;
   border-radius: 5px;
   font-size: 20px;
+  background-color: rgb(235, 238, 255)
 }
 
-.leaflet-container{
+Button:hover {
+  background-color: rgb(66, 199, 103);
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.leaflet-container {
   margin: 5px 10px 5px 10px;
   padding: 10px;
   height: 600px;
   border: 1px solid black;
   border-radius: 10px;
+}
+
+#riverName {
+  color: blue
 }
