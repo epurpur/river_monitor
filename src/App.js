@@ -25,7 +25,8 @@ const App = () => {
       longitude: -78.551420,
       link: 'https://waterdata.usgs.gov/nwis/uv?02032250',
       streamflow: null,
-      riverLevel: null
+      riverLevel: null,
+      highWater: 0
     },
     {
       id: 2,
@@ -36,7 +37,8 @@ const App = () => {
       longitude: -78.771352,
       link: `https://waterdata.usgs.gov/nwis/uv?02028500`,
       streamflow: null,
-      riverLevel: null
+      riverLevel: null,
+      highWater: 0
     },
     {
       id: 3,
@@ -46,7 +48,8 @@ const App = () => {
       longitude: -78.452893,
       link: 'https://waterdata.usgs.gov/nwis/uv?02034000',
       streamflow: null,
-      riverLevel: null
+      riverLevel: null,
+      highWater: 0
     },
     {
       id: 4,
@@ -57,7 +60,8 @@ const App = () => {
       longitude: -79.025056,
       link: 'https://waterdata.usgs.gov/nwis/uv?02027500',
       streamflow: null,
-      riverLevel: null
+      riverLevel: null,
+      highWater: 0
     },
     {
       id: 5,
@@ -68,7 +72,8 @@ const App = () => {
       longitude: -78.981485,
       link: 'https://waterdata.usgs.gov/nwis/uv?02027000',
       streamflow: null,
-      riverLevel: null
+      riverLevel: null,
+      highWater: 0
     },
     {
       id: 6,
@@ -79,10 +84,23 @@ const App = () => {
       longitude: -79.263919,
       link: 'https://waterdata.usgs.gov/nwis/uv?02025500',
       streamflow: null,
-      riverLevel: null
+      riverLevel: null,
+      highWater: 0
     },
     {
       id: 7,
+      siteID: "02037500",
+      name: "James River",
+      area: "Manchester Wall",
+      latitude: "37.529808",
+      longitude: "-77.445332",
+      link: "https://waterdata.usgs.gov/monitoring-location/02037500/#parameterCode=00065",
+      streamflow: null,
+      riverLevel: null,
+      highWater: 0
+    },
+    {
+      id: 8,
       siteID: "03185400",
       name: "New River",
       area: "New River Gorge",
@@ -90,10 +108,11 @@ const App = () => {
       longitude: -81.076491,
       link: 'https://waterdata.usgs.gov/nwis/uv?03185400',
       streamflow: null,
-      riverLevel: null
+      riverLevel: null,
+      highWater: 0
     },
     {
-      id: 8,
+      id: 9,
       siteID: "03190000",
       name: "Meadow River",
       area: "Meadow River",
@@ -101,10 +120,11 @@ const App = () => {
       longitude: -80.879187,
       link: 'https://waterdata.usgs.gov/nwis/uv?03190000',
       streamflow: null,
-      riverLevel: null
+      riverLevel: null,
+      highWater: 0
     },
     {
-      id: 9,
+      id: 10,
       siteID: "03189100",
       name: "Gauley River",
       area: "Summersville Lake",
@@ -112,10 +132,11 @@ const App = () => {
       longitude: -80.618284,
       link: 'https://waterdata.usgs.gov/nwis/uv?03189100',
       streamflow: null,
-      riverLevel: null
+      riverLevel: null,
+      highWater: 0
     },
     {
-      id: 10,
+      id: 11,
       siteID: "01605500",
       name: "South Branch Potomac River",
       area: "Franklin, River's Bend",
@@ -123,10 +144,11 @@ const App = () => {
       longitude: -79.319928,
       link: 'https://waterdata.usgs.gov/nwis/uv?01605500',
       streamflow: null,
-      riverLevel: null
+      riverLevel: null,
+      highWater: 0
     },
     {
-      id: 11,
+      id: 12,
       siteID: "01606500",
       name: "South Branch Potomac River",
       area: "Old House, Blue Rock",
@@ -134,20 +156,22 @@ const App = () => {
       longitude: -79.226880,
       link: 'https://waterdata.usgs.gov/nwis/uv?01606500',
       streamflow: null,
-      riverLevel: null
+      riverLevel: null,
+      highWater: 0
     },
     {
-      id: 12,
+      id: 13,
       siteID: "01665500",
       name: "Rapidan River",
       latitude: 38.239894,
       longitude: -78.355899,
       link: 'https://waterdata.usgs.gov/nwis/uv?01665500',
       streamflow: null,
-      riverLevel: null
+      riverLevel: null,
+      highWater: 0
     },
     {
-      id: 13, 
+      id: 14, 
       siteID: "03479000",
       name: "Watauga River",
       area: "Watauga River Gorge",
@@ -155,10 +179,11 @@ const App = () => {
       longitude: -81.831477,
       link: 'https://waterdata.usgs.gov/nwis/uv?03479000',
       streamflow: null,
-      riverLevel: null
+      riverLevel: null,
+      highWater: 0
     },
     {
-      id: 14,
+      id: 15,
       siteID: "02138500",
       name: "Linville River",
       area: "Linville Gorge",
@@ -166,7 +191,8 @@ const App = () => {
       longitude: -81.900285,
       link: 'https://waterdata.usgs.gov/nwis/uv?02138500',
       streamflow: null,
-      riverLevel: null
+      riverLevel: null,
+      highWater: 0
     }
   ])
   
@@ -211,7 +237,7 @@ const App = () => {
     const usgsCurrentWaterData = async () => {
       try{
         // API call includes river ID for each river, to add more rivers just include id number in 'sites'
-        let response = await fetch('https://waterservices.usgs.gov/nwis/iv/?format=json&sites=02032250,02028500,02034000,02027500,02027000,02025500,03185400,03190000,03189100,01605500,01606500,01665500,03479000,02138500&parameterCd=00060,00065&siteStatus=all')
+        let response = await fetch('https://waterservices.usgs.gov/nwis/iv/?format=json&sites=02032250,02028500,02034000,02027500,02037500,02027000,02025500,03185400,03190000,03189100,01605500,01606500,01665500,03479000,02138500&parameterCd=00060,00065&siteStatus=all')
 
         let data = await response.json()
         // extract timeSeries data from API results
