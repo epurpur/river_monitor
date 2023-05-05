@@ -105,12 +105,12 @@ const App = () => {
     },
     {
       id: 9,
-      siteID: "03189000",
+      siteID: "03189100",
       name: "Gauley River",
       area: "Summersville Lake",
       latitude: 38.324855,
       longitude: -80.618284,
-      link: 'https://waterdata.usgs.gov/nwis/uv?03189000',
+      link: 'https://waterdata.usgs.gov/nwis/uv?03189100',
       streamflow: null,
       riverLevel: null
     },
@@ -211,7 +211,7 @@ const App = () => {
     const usgsCurrentWaterData = async () => {
       try{
         // API call includes river ID for each river, to add more rivers just include id number in 'sites'
-        let response = await fetch('https://waterservices.usgs.gov/nwis/iv/?format=json&sites=02032250,02028500,02034000,02027500,02027000,02025500,03185400,03190000,03189000,01605500,01606500,01665500,03479000,02138500&parameterCd=00060,00065&siteStatus=all')
+        let response = await fetch('https://waterservices.usgs.gov/nwis/iv/?format=json&sites=02032250,02028500,02034000,02027500,02027000,02025500,03185400,03190000,03189100,01605500,01606500,01665500,03479000,02138500&parameterCd=00060,00065&siteStatus=all')
 
         let data = await response.json()
         // extract timeSeries data from API results
