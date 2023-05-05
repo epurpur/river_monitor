@@ -26,7 +26,7 @@ const App = () => {
       link: 'https://waterdata.usgs.gov/nwis/uv?02032250',
       streamflow: null,
       riverLevel: null,
-      highWater: 0
+      highWater: 4.00
     },
     {
       id: 2,
@@ -38,7 +38,7 @@ const App = () => {
       link: `https://waterdata.usgs.gov/nwis/uv?02028500`,
       streamflow: null,
       riverLevel: null,
-      highWater: 0
+      highWater: 4.00
     },
     {
       id: 3,
@@ -49,7 +49,7 @@ const App = () => {
       link: 'https://waterdata.usgs.gov/nwis/uv?02034000',
       streamflow: null,
       riverLevel: null,
-      highWater: 0
+      highWater: 4.00
     },
     {
       id: 4,
@@ -61,7 +61,7 @@ const App = () => {
       link: 'https://waterdata.usgs.gov/nwis/uv?02027500',
       streamflow: null,
       riverLevel: null,
-      highWater: 0
+      highWater: 3.25
     },
     {
       id: 5,
@@ -73,7 +73,7 @@ const App = () => {
       link: 'https://waterdata.usgs.gov/nwis/uv?02027000',
       streamflow: null,
       riverLevel: null,
-      highWater: 0
+      highWater: 3.80
     },
     {
       id: 6,
@@ -85,7 +85,7 @@ const App = () => {
       link: 'https://waterdata.usgs.gov/nwis/uv?02025500',
       streamflow: null,
       riverLevel: null,
-      highWater: 0
+      highWater: 6.25
     },
     {
       id: 7,
@@ -97,7 +97,7 @@ const App = () => {
       link: "https://waterdata.usgs.gov/monitoring-location/02037500/#parameterCode=00065",
       streamflow: null,
       riverLevel: null,
-      highWater: 0
+      highWater: 8.00
     },
     {
       id: 8,
@@ -109,7 +109,7 @@ const App = () => {
       link: 'https://waterdata.usgs.gov/nwis/uv?03185400',
       streamflow: null,
       riverLevel: null,
-      highWater: 0
+      highWater: 9.00
     },
     {
       id: 9,
@@ -121,7 +121,7 @@ const App = () => {
       link: 'https://waterdata.usgs.gov/nwis/uv?03190000',
       streamflow: null,
       riverLevel: null,
-      highWater: 0
+      highWater: 6.5
     },
     {
       id: 10,
@@ -133,7 +133,7 @@ const App = () => {
       link: 'https://waterdata.usgs.gov/nwis/uv?03189100',
       streamflow: null,
       riverLevel: null,
-      highWater: 0
+      highWater: 12.00
     },
     {
       id: 11,
@@ -145,7 +145,7 @@ const App = () => {
       link: 'https://waterdata.usgs.gov/nwis/uv?01605500',
       streamflow: null,
       riverLevel: null,
-      highWater: 0
+      highWater: 2.50
     },
     {
       id: 12,
@@ -157,7 +157,7 @@ const App = () => {
       link: 'https://waterdata.usgs.gov/nwis/uv?01606500',
       streamflow: null,
       riverLevel: null,
-      highWater: 0
+      highWater: 5.25
     },
     {
       id: 13,
@@ -168,7 +168,7 @@ const App = () => {
       link: 'https://waterdata.usgs.gov/nwis/uv?01665500',
       streamflow: null,
       riverLevel: null,
-      highWater: 0
+      highWater: 2.35
     },
     {
       id: 14, 
@@ -180,7 +180,7 @@ const App = () => {
       link: 'https://waterdata.usgs.gov/nwis/uv?03479000',
       streamflow: null,
       riverLevel: null,
-      highWater: 0
+      highWater: 2.25
     },
     {
       id: 15,
@@ -192,7 +192,7 @@ const App = () => {
       link: 'https://waterdata.usgs.gov/nwis/uv?02138500',
       streamflow: null,
       riverLevel: null,
-      highWater: 0
+      highWater: 1.75
     }
   ])
   
