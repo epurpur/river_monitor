@@ -306,10 +306,10 @@ const App = () => {
       </div>
       
       <MapContainer key={mapID} center={mapLocation && mapLocation} zoom={mapZoom && mapZoom} scrollWheelZoom={false}>
-        <TileLayer url="https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"/>
+        <TileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"/>
           {riverData && riverData.map((river) =>
             // create marker w/ popup for each river in map
-            <Marker position={[river.latitude, river.longitude]}>
+            <Marker position={[river.latitude, river.longitude]} color='red'>
               <Popup>
                 <h1 id='riverName'>{river.name}</h1>
                 <h3>{river.area}</h3>
