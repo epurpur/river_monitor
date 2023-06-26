@@ -6,7 +6,7 @@ import './App.css';
 /* Components */
 import { Button } from 'react-bootstrap'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { map } from 'leaflet';
+import L from 'leaflet';
 
 
 const App = () => {
@@ -293,6 +293,29 @@ const App = () => {
     usgsCurrentWaterData()
   }, []);
 
+  //////////////////////////////////////////////////////////
+  // Creating different colored markers for react leaflet //
+  //////////////////////////////////////////////////////////
+
+
+  const redIcon = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+  });
+
+  const greenIcon = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+  });
+
+  const blackIcon = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-black.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+  });
+
 
   return (
     <main>
@@ -309,17 +332,33 @@ const App = () => {
         <TileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"/>
           {riverData && riverData.map((river) =>
             // create marker w/ popup for each river in map
-            <Marker position={[river.latitude, river.longitude]} color='red'>
+            <Marker position={[river.latitude, river.longitude]} 
+
+                    // conditionally render marker icon color
+                    icon={river.riverLevel > river.highWater ? redIcon 
+                          : river.riverLevel < (river.highWater/2) ? blackIcon
+                          : greenIcon} >
+
               <Popup>
                 <h1 id='riverName'>{river.name}</h1>
                 <h3>{river.area}</h3>
                 <h4>Current Streamflow Rate: {river.streamflow} m^3/s</h4>
                 <h4>Current River Level: {river.riverLevel} ft</h4>
+                <h4>High water: {river.highWater} ft</h4>
+
+                {/* Render alert for either high or low water */}
+                {river.riverLevel > river.highWater ? 
+                (<h4 className='waterAlert' id="highWaterAlert">High Water!</h4>) : 
+                river.riverLevel < (river.highWater/2) ? (<h4 className='waterAlert' id="lowWaterAlert">Low Water!</h4>)
+                : (<h4></h4>)}
+
                 <a href={river.link} target="_blank" rel="noreferrer">See USGS Site for more info</a>
               </Popup>
             </Marker>
           )}
+
       </MapContainer>
+      
 
     </main>
 

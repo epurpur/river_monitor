@@ -45,3 +45,20 @@ Button:hover {
 #riverName {
   color: blue
 }
+
+.waterAlert {
+  text-align: center;
+}
+
+#highWaterAlert {
+  background-color: red;
+  border-radius: 10px;
+  color: white
+}
+
+#lowWaterAlert {
+  background-color: black;
+  border-radius: 10px;
+  color: white;
+}
+
